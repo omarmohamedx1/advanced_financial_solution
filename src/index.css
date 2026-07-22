@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Outfit:wght@300;400;600;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy-deep: #0f172a;
+  --blue-royal: #1e40af;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: #ffffff; /* جعل الخلفية بيضاء نقية لتناسب التصميم الجديد */
+  color: var(--navy-deep);
+  overflow-x: hidden;
+}
+
+/* --- تعريف حركة الشريط (Marquee Keyframes) --- */
+
+/* حركة لليسار (للغة الإنجليزية LTR) */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* يتحرك لنصف المسافة ثم يعيد */
+}
+
+/* حركة لليمين (للغة العربية RTL) */
+@keyframes scroll-rtl {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+/* الكلاس الأساسي للشريط */
+.animate-marquee {
+  width: max-content; /* مهم جداً عشان العناصر تيجي جنب بعض */
+}
+
+/* تخصيص الحركة بناءً على لغة الصفحة (تلقائي) */
+html[dir="ltr"] .animate-marquee {
+  animation: scroll 40s linear infinite; /* سرعة متوسطة */
+}
+
+html[dir="rtl"] .animate-marquee {
+  animation: scroll-rtl 40s linear infinite; /* عكس الاتجاه للعربي */
+}
+
+/* وقف الحركة عند وقوف الماوس عليها */
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* تحسين شكل السكرول بار للمتصفح (اختياري) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
